@@ -1,0 +1,15 @@
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.csproj.AssemblyReference.cache
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.GeneratedMSBuildEditorConfig.editorconfig
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.AssemblyInfoInputs.cache
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.AssemblyInfo.cs
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.csproj.CoreCompileInputs.cache
+/home/maksim/Рабочий стол/c#/console/game/bin/Debug/net6.0/game
+/home/maksim/Рабочий стол/c#/console/game/bin/Debug/net6.0/game.deps.json
+/home/maksim/Рабочий стол/c#/console/game/bin/Debug/net6.0/game.runtimeconfig.json
+/home/maksim/Рабочий стол/c#/console/game/bin/Debug/net6.0/game.dll
+/home/maksim/Рабочий стол/c#/console/game/bin/Debug/net6.0/ref/game.dll
+/home/maksim/Рабочий стол/c#/console/game/bin/Debug/net6.0/game.pdb
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.dll
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/ref/game.dll
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.pdb
+/home/maksim/Рабочий стол/c#/console/game/obj/Debug/net6.0/game.genruntimeconfig.cache

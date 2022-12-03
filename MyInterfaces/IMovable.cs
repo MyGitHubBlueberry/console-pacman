@@ -1,0 +1,6 @@
+namespace Game
+{
+   interface IMovable
+   {
+   }
+}
