@@ -30,21 +30,18 @@ namespace Game
       {
          int _maxProgressBarValue = 10;
          ConsoleColor defaultColor = Console.BackgroundColor;
-         bool firstTime = false;
-         
-         if(pacman.CollectedDots == 0)
-            firstTime = true;
+         bool firstTime = pacman.CollectedDots == 0;
 
          if((drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
-         (!drawOneTime && pacman.CollectedDots == newMap.AllDots))
+            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
+            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
+            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
+            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
+            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
+            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
+            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
+            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
+            (!drawOneTime && pacman.CollectedDots == newMap.AllDots))
          {
             _currentProgressBarValue++;
             drawOneTime = !drawOneTime;
