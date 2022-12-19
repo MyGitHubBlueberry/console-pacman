@@ -79,31 +79,28 @@ namespace Game
       private void ShowCurrentLeaderboard(char[,]map, User user)
       {
          Console.SetCursorPosition(map.GetLength(1) + 1, 5);
-         if (CurrentLeaderboard != null)
+         ConsoleColor defaultColor = Console.ForegroundColor;
+         int topFiveLeaders = 0;
+
+         Console.WriteLine("Таблица Лидеров: ");
+         foreach(var player in CurrentLeaderboard.OrderByDescending(value => value.Value))
          {
-            ConsoleColor defaultColor = Console.ForegroundColor;
-            int topFiveLeaders = 0;
-
-            Console.WriteLine("Таблица Лидеров: ");
-            foreach(var player in CurrentLeaderboard.OrderByDescending(value => value.Value))
+            if(topFiveLeaders < 5)
             {
-               if(topFiveLeaders < 5)
-               {
-                  Console.SetCursorPosition(map.GetLength(1) + 1, 6 + topFiveLeaders);
+               Console.SetCursorPosition(map.GetLength(1) + 1, 6 + topFiveLeaders);
 
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = ConsoleColor.Yellow;
-                     _currentUserPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
-                  }
-                  int userPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
-                  Console.Write($"{userPosition} - {player.Key} набрал {player.Value} очков.           ");
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = defaultColor;
-                  }
-                  topFiveLeaders++;
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = ConsoleColor.Yellow;
+                  _currentUserPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
                }
+               int userPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
+               Console.Write($"{userPosition} - {player.Key} набрал {player.Value} очков.           ");
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = defaultColor;
+               }
+               topFiveLeaders++;
             }
          }
       }
