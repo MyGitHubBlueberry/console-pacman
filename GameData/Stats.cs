@@ -72,7 +72,6 @@ namespace Game
          {
             string bar = "          ";
             Console.Write($"[{bar}]");
-            firstTime = false;
          }
       }
 
