@@ -28,21 +28,27 @@ namespace Game
 
       private void DrawProgressBar(ConsoleColor color, Pacman pacman, char[,] map, Map newMap)
       {
-         int _maxProgressBarValue = 10;
-         ConsoleColor defaultColor = Console.BackgroundColor;
+         int _maxProgressBarValue = 10;         
+         int _barOccupancy = 1;
+         int _savedBarOccupancy = 0;
          bool firstTime = pacman.CollectedDots == 0;
+         ConsoleColor defaultColor = Console.BackgroundColor;
 
-         if((_drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
-            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
-            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
-            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
-            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
-            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
-            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
-            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
-            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
-            (!_drawOneTime && pacman.CollectedDots == newMap.AllDots))
+         // if((_drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
+         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
+         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
+         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
+         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
+         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
+         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
+         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
+         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
+         //    (!_drawOneTime && pacman.CollectedDots == newMap.AllDots))
+
+
+         if((newMap.AllDots/10)*_barOccupancy != _savedBarOccupancy && pacman.CollectedDots == (newMap.AllDots/10)*_barOccupancy)
          {
+            
             _currentProgressBarValue++;
             _drawOneTime = !_drawOneTime;
             string bar = "";
