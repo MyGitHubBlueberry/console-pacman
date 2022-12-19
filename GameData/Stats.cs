@@ -154,30 +154,27 @@ namespace Game
       private void ShowMaximumLeaderboard(char[,] map, User user)
       {
          Console.SetCursorPosition(map.GetLength(1) + 50, 5);
-         if (MaximumLeaderboard != null)
+         ConsoleColor defaultColor = Console.ForegroundColor;
+         int topFiveLeaders = 0;
+
+         Console.Write("Таблица лидеров по максимально собранным очкам: ");
+         foreach(var player in MaximumLeaderboard.OrderByDescending(value => value.Value))
          {
-            ConsoleColor defaultColor = Console.ForegroundColor;
-            int topFiveLeaders = 0;
-
-            Console.Write("Таблица лидеров по максимально собранным очкам: ");
-            foreach(var player in MaximumLeaderboard.OrderByDescending(value => value.Value))
+            if(topFiveLeaders < 5)
             {
-               if(topFiveLeaders < 5)
-               {
-                  Console.SetCursorPosition(map.GetLength(1) + 50, 6 + topFiveLeaders);
+               Console.SetCursorPosition(map.GetLength(1) + 50, 6 + topFiveLeaders);
 
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = ConsoleColor.Yellow;
-                  }
-                  int maximumuserPosition = MaximumLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
-                  Console.Write($"{maximumuserPosition} - {player.Key} набрал {player.Value} очков.           ");
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = defaultColor;
-                  }
-                  topFiveLeaders++;
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = ConsoleColor.Yellow;
                }
+               int maximumuserPosition = MaximumLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
+               Console.Write($"{maximumuserPosition} - {player.Key} набрал {player.Value} очков.           ");
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = defaultColor;
+               }
+               topFiveLeaders++;
             }
          }
       }
