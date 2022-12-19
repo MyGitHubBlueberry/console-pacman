@@ -42,45 +42,42 @@
             goto closeProgram;
          }
 
-         if (user != null)
+         if(user != null)
+         while(isPlaying)
          {
-            while(isPlaying)
-            {
-               stats.ShowStats(map, pacman, user, newMap);
-               if(pacman.isAlive)
-                  pacman.CheckedMove(map, ref pacman, user);
-               stats.ShowStats(map, pacman, user, newMap);
+            stats.ShowStats(map, pacman, user, newMap);
+            if(pacman.isAlive)
+               pacman.CheckedMove(map, ref pacman, user);
+            stats.ShowStats(map, pacman, user, newMap);
 
-               pacman.CheckingIsPackmanAlive(pacman, ghosts);
+            pacman.CheckingIsPackmanAlive(pacman, ghosts);
           
-               ghosts[0].CheckedMove(map, ref ghosts);
-               pacman.CheckingIsPackmanAlive(pacman, ghosts);
+            ghosts[0].CheckedMove(map, ref ghosts);
+            pacman.CheckingIsPackmanAlive(pacman, ghosts);
 
-               Thread.Sleep(200);
+            System.Threading.Thread.Sleep(200);
 
-               if (pacman.isAlive && pacman.CollectedDots == newMap.AllDots)
+            if (pacman.isAlive && pacman.CollectedDots == newMap.AllDots)
+            {
+               if(pacmanKeyIsGenerated)
                {
-                  if(pacmanKeyIsGenerated)
-                  {
-                     pacmanKey.Shine();
-                     pacmanKey.ChekingIsKeyCollected(pacman, user);
-                  }
-                  else
-                  {
-                     Key.GenerateKey(pacman, map, out pacmanKey);
-                     pacmanKeyIsGenerated = true;
-                  }
+                  pacmanKey.Shine();
+                  pacmanKey.ChekingIsKeyCollected(pacman, user);
                }
-               if (pacmanKey.PacmanKeyCollected)
+               else
                {
-                  stats.ResetBar();
-                  Console.Clear();
-                  goto generateNewMap;
+                  Key.GenerateKey(pacman, map, out pacmanKey);
+                  pacmanKeyIsGenerated = true;
                }
-               isPlaying = pacman.isAlive;
             }
+            if (pacmanKey.PacmanKeyCollected)
+            {
+               stats.ResetBar();
+               Console.Clear();
+               goto generateNewMap;
+            }
+            isPlaying = pacman.isAlive;
          }
-
          stats.GameResult(pacman,map);
 
          Console.WriteLine("\nЧтобы играть снова нажмите \"P\". Если хотите выйти, нажмите \"Q\".");
@@ -97,7 +94,7 @@
             default:
                if(firstAttention)
                {
-                  Console.WriteLine("Нажми одну из предложенных кнопок.");
+                  System.Console.WriteLine("Нажми одну из предложенных кнопок.");
                   firstAttention = false;
                }
                goto tryagain;

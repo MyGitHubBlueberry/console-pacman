@@ -28,9 +28,9 @@ namespace Game
          {
             for (int j = 0; j < map.GetLength(1); j++)
             {
-               Console.Write(map[i, j]);
+               System.Console.Write(map[i, j]);
             }
-            Console.WriteLine();
+            System.Console.WriteLine();
          }
       }
 

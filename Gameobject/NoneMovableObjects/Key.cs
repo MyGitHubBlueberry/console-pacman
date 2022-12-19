@@ -38,7 +38,7 @@ namespace Game
          {
             for (KeyColor = _availibleKeyColors.Yellow; KeyColor <= _availibleKeyColors.Magenta; KeyColor++)
             {
-               Thread.Sleep(10);
+               System.Threading.Thread.Sleep(10);
                switch(KeyColor)
                {
                   case _availibleKeyColors.Yellow:
