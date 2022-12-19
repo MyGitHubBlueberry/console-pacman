@@ -2,7 +2,7 @@ namespace Game
 {
    public sealed class Stats
    {
-      private bool drawOneTime = true;
+      private bool _drawOneTime = true;
       private int _currentProgressBarValue = 0;
       private int _currentUserPosition;
       private Dictionary<string, int> CurrentLeaderboard = new Dictionary<string, int>();
@@ -32,19 +32,19 @@ namespace Game
          ConsoleColor defaultColor = Console.BackgroundColor;
          bool firstTime = pacman.CollectedDots == 0;
 
-         if((drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
-            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
-            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
-            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
-            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
-            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
-            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
-            (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
-            (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
-            (!drawOneTime && pacman.CollectedDots == newMap.AllDots))
+         if((_drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
+            (!_drawOneTime && pacman.CollectedDots == newMap.AllDots))
          {
             _currentProgressBarValue++;
-            drawOneTime = !drawOneTime;
+            _drawOneTime = !_drawOneTime;
             string bar = "";
 
             for (int i = 0; i < _currentProgressBarValue; i++)
