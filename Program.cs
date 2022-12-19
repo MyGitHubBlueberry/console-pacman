@@ -55,7 +55,7 @@
             ghosts[0].CheckedMove(map, ref ghosts);
             pacman.CheckingIsPackmanAlive(pacman, ghosts);
 
-            System.Threading.Thread.Sleep(200);
+            Thread.Sleep(200);
 
             if (pacman.isAlive && pacman.CollectedDots == newMap.AllDots)
             {
@@ -94,7 +94,7 @@
             default:
                if(firstAttention)
                {
-                  System.Console.WriteLine("Нажми одну из предложенных кнопок.");
+                  Console.WriteLine("Нажми одну из предложенных кнопок.");
                   firstAttention = false;
                }
                goto tryagain;

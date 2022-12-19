@@ -69,7 +69,7 @@ namespace Game
 
          Console.SetCursorPosition(pacman._y, pacman._x);
          Console.ForegroundColor = ConsoleColor.Yellow;
-         System.Console.Write('@');
+         Console.Write('@');
          Console.ForegroundColor = defaultColor;
       }
 
@@ -92,7 +92,7 @@ namespace Game
             if(key.Key == ConsoleKey.P)
             {
                Console.SetCursorPosition(0, map.GetLength(0) + 5);
-               System.Console.WriteLine("Чтобы продолжить игарть нажмите \"R\"");
+               Console.WriteLine("Чтобы продолжить игарть нажмите \"R\"");
                while(true)
                {
                   ConsoleKeyInfo outKey = Console.ReadKey(true);

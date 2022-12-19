@@ -22,7 +22,7 @@ namespace Game
 
          Console.SetCursorPosition(0, map.GetLength(0) + 1);
 
-         System.Console.WriteLine("Чтобы приостановить игру нажмите \"P\".");
+         Console.WriteLine("Чтобы приостановить игру нажмите \"P\".");
 
       }
 
@@ -55,9 +55,9 @@ namespace Game
                bar += " ";
             }
             
-            System.Console.Write("[");
+            Console.Write("[");
             Console.BackgroundColor = color;
-            System.Console.Write(bar);
+            Console.Write(bar);
             Console.BackgroundColor = defaultColor;
    
             bar = "";
@@ -66,12 +66,12 @@ namespace Game
                bar += " ";
             }
    
-            System.Console.Write(bar + "]");
+            Console.Write(bar + "]");
          }
          else if(firstTime)
          {
             string bar = "          ";
-            System.Console.Write($"[{bar}]");
+            Console.Write($"[{bar}]");
             firstTime = false;
          }
       }
@@ -187,11 +187,11 @@ namespace Game
          Console.SetCursorPosition(0, map.GetLength(0) + 3);
          if(_currentUserPosition == 1)
          {
-            System.Console.WriteLine("Победа! Вы заняли первое место в лидер-борде!");
+            Console.WriteLine("Победа! Вы заняли первое место в лидер-борде!");
          }
          else
          {
-            System.Console.WriteLine("Вы проиграли! Ваше место в лидер-борде - {0}.",_currentUserPosition);
+            Console.WriteLine("Вы проиграли! Ваше место в лидер-борде - {0}.",_currentUserPosition);
          }
       }
    
