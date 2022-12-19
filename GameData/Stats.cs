@@ -79,7 +79,7 @@ namespace Game
       private void ShowCurrentLeaderboard(char[,]map, User user)
       {
          Console.SetCursorPosition(map.GetLength(1) + 1, 5);
-         if(CurrentLeaderboard != null)
+         if (CurrentLeaderboard != null)
          {
             ConsoleColor defaultColor = Console.ForegroundColor;
             int topFiveLeaders = 0;
@@ -154,7 +154,7 @@ namespace Game
       private void ShowMaximumLeaderboard(char[,] map, User user)
       {
          Console.SetCursorPosition(map.GetLength(1) + 50, 5);
-         if(MaximumLeaderboard != null)
+         if (MaximumLeaderboard != null)
          {
             ConsoleColor defaultColor = Console.ForegroundColor;
             int topFiveLeaders = 0;
