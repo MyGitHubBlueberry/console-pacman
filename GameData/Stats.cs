@@ -2,7 +2,7 @@ namespace Game
 {
    public sealed class Stats
    {
-      private bool drawOneTime = true;
+      private bool _drawOneTime = true;
       private int _currentProgressBarValue = 0;
       private int _currentUserPosition;
       private Dictionary<string, int> CurrentLeaderboard = new Dictionary<string, int>();
@@ -22,7 +22,7 @@ namespace Game
 
          Console.SetCursorPosition(0, map.GetLength(0) + 1);
 
-         System.Console.WriteLine("Чтобы приостановить игру нажмите \"P\".");
+         Console.WriteLine("Чтобы приостановить игру нажмите \"P\".");
 
       }
 
@@ -30,24 +30,21 @@ namespace Game
       {
          int _maxProgressBarValue = 10;
          ConsoleColor defaultColor = Console.BackgroundColor;
-         bool firstTime = false;
-         
-         if(pacman.CollectedDots == 0)
-            firstTime = true;
+         bool firstTime = pacman.CollectedDots == 0;
 
-         if((drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
-         (!drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
-         (drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
-         (!drawOneTime && pacman.CollectedDots == newMap.AllDots))
+         if((_drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
+            (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
+            (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
+            (!_drawOneTime && pacman.CollectedDots == newMap.AllDots))
          {
             _currentProgressBarValue++;
-            drawOneTime = !drawOneTime;
+            _drawOneTime = !_drawOneTime;
             string bar = "";
 
             for (int i = 0; i < _currentProgressBarValue; i++)
@@ -55,9 +52,9 @@ namespace Game
                bar += " ";
             }
             
-            System.Console.Write("[");
+            Console.Write("[");
             Console.BackgroundColor = color;
-            System.Console.Write(bar);
+            Console.Write(bar);
             Console.BackgroundColor = defaultColor;
    
             bar = "";
@@ -66,44 +63,40 @@ namespace Game
                bar += " ";
             }
    
-            System.Console.Write(bar + "]");
+            Console.Write(bar + "]");
          }
          else if(firstTime)
          {
             string bar = "          ";
-            System.Console.Write($"[{bar}]");
-            firstTime = false;
+            Console.Write($"[{bar}]");
          }
       }
 
       private void ShowCurrentLeaderboard(char[,]map, User user)
       {
          Console.SetCursorPosition(map.GetLength(1) + 1, 5);
-         if(CurrentLeaderboard != null)
+         ConsoleColor defaultColor = Console.ForegroundColor;
+         int topFiveLeaders = 0;
+
+         Console.WriteLine("Таблица Лидеров: ");
+         foreach(var player in CurrentLeaderboard.OrderByDescending(value => value.Value))
          {
-            ConsoleColor defaultColor = Console.ForegroundColor;
-            int topFiveLeaders = 0;
-
-            Console.WriteLine("Таблица Лидеров: ");
-            foreach(var player in CurrentLeaderboard.OrderByDescending(value => value.Value))
+            if(topFiveLeaders < 5)
             {
-               if(topFiveLeaders < 5)
-               {
-                  Console.SetCursorPosition(map.GetLength(1) + 1, 6 + topFiveLeaders);
+               Console.SetCursorPosition(map.GetLength(1) + 1, 6 + topFiveLeaders);
 
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = ConsoleColor.Yellow;
-                     _currentUserPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
-                  }
-                  int userPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
-                  Console.Write($"{userPosition} - {player.Key} набрал {player.Value} очков.           ");
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = defaultColor;
-                  }
-                  topFiveLeaders++;
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = ConsoleColor.Yellow;
+                  _currentUserPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
                }
+               int userPosition = CurrentLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
+               Console.Write($"{userPosition} - {player.Key} набрал {player.Value} очков.           ");
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = defaultColor;
+               }
+               topFiveLeaders++;
             }
          }
       }
@@ -154,30 +147,27 @@ namespace Game
       private void ShowMaximumLeaderboard(char[,] map, User user)
       {
          Console.SetCursorPosition(map.GetLength(1) + 50, 5);
-         if(MaximumLeaderboard != null)
+         ConsoleColor defaultColor = Console.ForegroundColor;
+         int topFiveLeaders = 0;
+
+         Console.Write("Таблица лидеров по максимально собранным очкам: ");
+         foreach(var player in MaximumLeaderboard.OrderByDescending(value => value.Value))
          {
-            ConsoleColor defaultColor = Console.ForegroundColor;
-            int topFiveLeaders = 0;
-
-            Console.Write("Таблица лидеров по максимально собранным очкам: ");
-            foreach(var player in MaximumLeaderboard.OrderByDescending(value => value.Value))
+            if(topFiveLeaders < 5)
             {
-               if(topFiveLeaders < 5)
-               {
-                  Console.SetCursorPosition(map.GetLength(1) + 50, 6 + topFiveLeaders);
+               Console.SetCursorPosition(map.GetLength(1) + 50, 6 + topFiveLeaders);
 
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = ConsoleColor.Yellow;
-                  }
-                  int maximumuserPosition = MaximumLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
-                  Console.Write($"{maximumuserPosition} - {player.Key} набрал {player.Value} очков.           ");
-                  if(player.Key == user.Name)
-                  {
-                     Console.ForegroundColor = defaultColor;
-                  }
-                  topFiveLeaders++;
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = ConsoleColor.Yellow;
                }
+               int maximumuserPosition = MaximumLeaderboard.OrderByDescending(value => value.Value).ToList().IndexOf(player) + 1;
+               Console.Write($"{maximumuserPosition} - {player.Key} набрал {player.Value} очков.           ");
+               if(player.Key == user.Name)
+               {
+                  Console.ForegroundColor = defaultColor;
+               }
+               topFiveLeaders++;
             }
          }
       }
@@ -187,11 +177,11 @@ namespace Game
          Console.SetCursorPosition(0, map.GetLength(0) + 3);
          if(_currentUserPosition == 1)
          {
-            System.Console.WriteLine("Победа! Вы заняли первое место в лидер-борде!");
+            Console.WriteLine("Победа! Вы заняли первое место в лидер-борде!");
          }
          else
          {
-            System.Console.WriteLine("Вы проиграли! Ваше место в лидер-борде - {0}.",_currentUserPosition);
+            Console.WriteLine("Вы проиграли! Ваше место в лидер-борде - {0}.",_currentUserPosition);
          }
       }
    

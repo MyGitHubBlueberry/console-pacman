@@ -15,9 +15,9 @@ namespace Game
          Console.CursorVisible = false;
 
          
-         System.Console.Write(_gameIntroduction);
-         System.Console.WriteLine("\n\nПеред началом рекомендуется развернуть консоль на весь экран. \nСлишком маленький размер может быть причиной некорректной отрисовки карты.");
-         System.Console.Write("\nНажмите любую клавишу, чтобы начать");
+         Console.Write(_gameIntroduction);
+         Console.WriteLine("\n\nПеред началом рекомендуется развернуть консоль на весь экран. \nСлишком маленький размер может быть причиной некорректной отрисовки карты.");
+         Console.Write("\nНажмите любую клавишу, чтобы начать");
 
          _cursorPosition = Console.GetCursorPosition();
 
@@ -67,7 +67,7 @@ namespace Game
          }
          catch (DirectoryNotFoundException) 
          {
-            System.Console.WriteLine("Папка не найдена. По пути 'bin/Debug/net6.0/UserInfo' должен находиться файл user_info. \nЕсли вы пытаетесь запуститься из встроенного терминала, перенесите папки 'Maps' и 'UserInfo' в корень папки с игрой.");
+            Console.WriteLine("Папка не найдена. По пути 'bin/Debug/net6.0/UserInfo' должен находиться файл user_info. \nЕсли вы пытаетесь запуститься из встроенного терминала, перенесите папки 'Maps' и 'UserInfo' в корень папки с игрой.");
             
             throw new DirectoryNotFoundException();
          }
@@ -99,10 +99,10 @@ namespace Game
          {
             case ConsoleKey.L:
                Console.Clear();
-               System.Console.Write("Введите ваше имя пользователя, затем нажмите \"Enter\": ");
+               Console.Write("Введите ваше имя пользователя, затем нажмите \"Enter\": ");
                tryToLogin = Console.ReadLine();
 
-               System.Console.Write("Введите ваш пароль, затем нажмите \"Enter\": ");
+               Console.Write("Введите ваш пароль, затем нажмите \"Enter\": ");
                tryToPassword = Console.ReadLine();
 
                if (!String.IsNullOrWhiteSpace(tryToLogin) && !String.IsNullOrWhiteSpace(tryToPassword))
@@ -117,7 +117,7 @@ namespace Game
                      }
                      else
                      {
-                        System.Console.WriteLine("Имя пользователя или пароль введено не верно.");
+                        Console.WriteLine("Имя пользователя или пароль введено не верно.");
                         Console.ReadKey();
                         Console.Clear();
                         goto tryAgain;
@@ -125,7 +125,7 @@ namespace Game
                   }
                   catch (Exception)
                   {
-                     System.Console.WriteLine("Нет такого пользователя.");
+                     Console.WriteLine("Нет такого пользователя.");
                      Console.ReadKey();
                      Console.Clear();
                      goto tryAgain;
@@ -140,10 +140,10 @@ namespace Game
                break;
             case ConsoleKey.R:
                Console.Clear();
-               System.Console.Write("Придумайте имя пользователя, затем нажмите \"Enter\": ");
+               Console.Write("Придумайте имя пользователя, затем нажмите \"Enter\": ");
                userLogin = Console.ReadLine();
 
-               System.Console.Write("Придумайте пароль, затем нажмите \"Enter\": ");
+               Console.Write("Придумайте пароль, затем нажмите \"Enter\": ");
                userPassword = Console.ReadLine();
 
                if (!String.IsNullOrWhiteSpace(userLogin) && !String.IsNullOrWhiteSpace(userPassword))
@@ -155,7 +155,7 @@ namespace Game
 
                   if (userLogin.Length > 10)
                   {
-                     System.Console.WriteLine("Имя пользователя не может быть больше 10 символов.");
+                     Console.WriteLine("Имя пользователя не может быть больше 10 символов.");
                      Console.ReadKey();
                      Console.Clear();
                      goto tryAgain;
@@ -178,7 +178,7 @@ namespace Game
                      }
                      if (UserIsExist)
                      {
-                        System.Console.WriteLine("Такой пользователь уже есть. Выберете другое имя или войдите под этим.");
+                        Console.WriteLine("Такой пользователь уже есть. Выберете другое имя или войдите под этим.");
                         Console.ReadKey();
                         Console.Clear();
                         goto tryAgain;
@@ -198,7 +198,7 @@ namespace Game
                   }
                   catch (Exception exc)
                   {
-                     System.Console.WriteLine("Ошибка ввода-вывода:\n " + exc.Message);
+                     Console.WriteLine("Ошибка ввода-вывода:\n " + exc.Message);
                      Console.ReadKey();
                      Console.Clear();
                      goto tryAgain;
@@ -219,14 +219,14 @@ namespace Game
                      }
                   }
 
-                  System.Console.WriteLine("Теперь войдите под иминенм которое придумали.");
+                  Console.WriteLine("Теперь войдите под иминенм которое придумали.");
                   Console.ReadKey();
                   Console.Clear();
                   goto tryAgain;
                }
                if (String.IsNullOrWhiteSpace(userLogin) || String.IsNullOrWhiteSpace(userPassword))
                {
-                  System.Console.WriteLine("Имя пользователя и пароль не могут быть пустыми.");
+                  Console.WriteLine("Имя пользователя и пароль не могут быть пустыми.");
                   Console.ReadKey();
                   Console.Clear();
                   goto tryAgain;
@@ -234,12 +234,12 @@ namespace Game
                break;
             case ConsoleKey.I:
                Console.Clear();
-               System.Console.WriteLine(_gameIntroduction);
-               System.Console.WriteLine("Пакменом можно управлять стрелочками на клавиатуре или клавишами wasd; \nКлюч появляется когда все точки на карте будут собраны, собрав его вы попадёте на следующую карту.\n\nВ таблице лидеров отображаются игроки, которые играли с вашего устройсва во время текущего сеанса. \nЧтобы пользователь отображался в таблице лидеров попросите его сиграть.\n\nВы можете сделать собственную карту и добавить её и игру. \nДля этого создайте в папке 'bin/Debug/net6.0/Maps' новый файл. Вы можете его назвать как угодно, \nглавное, чтобы названия файлов в папке не повтарялись.Для удобства скопируйте \nсодержимое любого из этой папки в ваш файл, главное, чтобы карта отсавалась размером \n39# в длину и 11# в высоту, чтобы не вызвать случайных ошибок. На ней должны быть \nотмечены 4 призрака и один пакмен. \nПосле этого добавьте название вашего файла в массив строк в файле Program.cs:");
+               Console.WriteLine(_gameIntroduction);
+               Console.WriteLine("Пакменом можно управлять стрелочками на клавиатуре или клавишами wasd; \nКлюч появляется когда все точки на карте будут собраны, собрав его вы попадёте на следующую карту.\n\nВ таблице лидеров отображаются игроки, которые играли с вашего устройсва во время текущего сеанса. \nЧтобы пользователь отображался в таблице лидеров попросите его сиграть.\n\nВы можете сделать собственную карту и добавить её и игру. \nДля этого создайте в папке 'bin/Debug/net6.0/Maps' новый файл. Вы можете его назвать как угодно, \nглавное, чтобы названия файлов в папке не повтарялись.Для удобства скопируйте \nсодержимое любого из этой папки в ваш файл, главное, чтобы карта отсавалась размером \n39# в длину и 11# в высоту, чтобы не вызвать случайных ошибок. На ней должны быть \nотмечены 4 призрака и один пакмен. \nПосле этого добавьте название вашего файла в массив строк в файле Program.cs:");
 
-               System.Console.WriteLine("\nstring[] availibleMaps = { \"map\", \"map2\", \"map4\" , \"Название вашего файла\"};");
+               Console.WriteLine("\nstring[] availibleMaps = { \"map\", \"map2\", \"map4\" , \"Название вашего файла\"};");
 
-               System.Console.Write("\n\nНажмите любую клавишу, чтобы вернуться");
+               Console.Write("\n\nНажмите любую клавишу, чтобы вернуться");
                _cursorPosition = Console.GetCursorPosition();
                
                FakeLoading(_cursorPosition.Left, _cursorPosition.Top);
@@ -259,7 +259,7 @@ namespace Game
          }
          catch (DirectoryNotFoundException) 
          {
-            System.Console.WriteLine("Папка не найдена. По пути 'bin/Debug/net6.0/Maps' должны находиться файлы карт. \nЕсли вы пытаетесь запуститься из встроенного терминала, перенесите папки 'Maps' и 'UserInfo' в корень папки с игрой.");
+            Console.WriteLine("Папка не найдена. По пути 'bin/Debug/net6.0/Maps' должны находиться файлы карт. \nЕсли вы пытаетесь запуститься из встроенного терминала, перенесите папки 'Maps' и 'UserInfo' в корень папки с игрой.");
             
             throw new DirectoryNotFoundException();
          }
@@ -273,7 +273,7 @@ namespace Game
          FakeLoading(_cursorPosition.Left, _cursorPosition.Top);
 
          Console.SetCursorPosition(0, map.GetLength(0) + 1);
-         System.Console.WriteLine("                                        ");
+         Console.WriteLine("                                        ");
       }
 
       private void FakeLoading(int left, int top)
@@ -284,7 +284,7 @@ namespace Game
             for (int i = 0; i < 3; i++)
             {
                Console.Write(".");
-               System.Threading.Thread.Sleep(1000);
+               Thread.Sleep(1000);
                if (Console.KeyAvailable)
                {
                   break;
@@ -292,7 +292,7 @@ namespace Game
             }
             Console.SetCursorPosition(left, top);
             Console.Write("   ");
-            System.Threading.Thread.Sleep(1000);
+            Thread.Sleep(1000);
          }
       }
    }

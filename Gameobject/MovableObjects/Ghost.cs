@@ -51,7 +51,7 @@ namespace Game
          
          Console.SetCursorPosition(ghost._y, ghost._x);
          Console.ForegroundColor = ghost.GhostColor;
-         System.Console.Write('$');
+         Console.Write('$');
          Console.ForegroundColor = defaultColor;
       }
       
