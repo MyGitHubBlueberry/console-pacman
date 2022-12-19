@@ -34,17 +34,6 @@ namespace Game
          bool firstTime = pacman.CollectedDots == 0;
          ConsoleColor defaultColor = Console.BackgroundColor;
 
-         // if((_drawOneTime && pacman.CollectedDots == newMap.AllDots / 10) || 
-         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 2) || 
-         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 3) || 
-         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 4) || 
-         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 5) || 
-         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 6) || 
-         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 7) || 
-         //    (!_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 8) || 
-         //    (_drawOneTime && pacman.CollectedDots == (newMap.AllDots / 10) * 9) || 
-         //    (!_drawOneTime && pacman.CollectedDots == newMap.AllDots))
-
 
          if((newMap.AllDots/10)*_barOccupancy != _savedBarOccupancy && pacman.CollectedDots == (newMap.AllDots/10)*_barOccupancy)
          {
