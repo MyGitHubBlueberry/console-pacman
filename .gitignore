@@ -1,0 +1,6 @@
+.vscode
+game
+game.pdb
+game.deps.json
+game.runtimeconfig.json
+obj/
