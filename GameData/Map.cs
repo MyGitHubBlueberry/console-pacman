@@ -44,65 +44,67 @@ namespace Game
          ConsoleColor ghostColor = ConsoleColor.White;
          ConsoleColor defaultColor = Console.ForegroundColor;
 
-         for (int i = 0; i < map.GetLength(0); i++)
+         for (int mapI = 0; mapI < map.GetLength(0); mapI++)
          {
-            for (int j = 0; j < map.GetLength(1); j++)
+            for (int mapJ = 0; mapJ < map.GetLength(1); mapJ++)
             {
-               if (map[i, j] == '@')
+               if (map[mapI, mapJ] == '@')
                {
-                  Console.SetCursorPosition(j, i);
-                  Console.ForegroundColor = ConsoleColor.Yellow;
-                  Console.Write('@');
-                  Console.ForegroundColor = defaultColor;
-                  pacman = new Pacman(i, j);
+                  pacman = InitializePacman(mapI, mapJ, defaultColor);
                }
-               if (map[i, j] == '$')
+               else if (map[mapI, mapJ] == '$')
                {
-                  switch (colorChooser)
-                  {
-                     case 0:
-                        Console.SetCursorPosition(j, i);
-                        ghostColor = ConsoleColor.Cyan;
-                        Console.ForegroundColor = ghostColor;
-                        Console.Write('$');
-                        Console.ForegroundColor = defaultColor;
-                        break;
-                     case 1:
-                        Console.SetCursorPosition(j, i);
-                        ghostColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ghostColor;
-                        Console.Write('$');
-                        Console.ForegroundColor = defaultColor;
-                        break;
-                     case 2:
-                        Console.SetCursorPosition(j, i);
-                        ghostColor = ConsoleColor.DarkYellow;
-                        Console.ForegroundColor = ghostColor;
-                        Console.Write('$');
-                        Console.ForegroundColor = defaultColor;
-                        break;
-                     case 3:
-                        Console.SetCursorPosition(j, i);
-                        ghostColor = ConsoleColor.Magenta;
-                        Console.ForegroundColor = ghostColor;
-                        Console.Write('$');
-                        Console.ForegroundColor = defaultColor;
-                        break;
-                  }
-                  ghosts[index] = new Ghost(i, j, ghostColor);
-                  colorChooser++;
+                  ghosts[index] = InitializeGhost(colorChooser, mapI, mapJ);
                   index++;
                }
-               if (map[i, j] == ' ')
+               else if (map[mapI, mapJ] == ' ')
                {
-                  map[i, j] = '.';
-                  Console.SetCursorPosition(j, i);
-                  Console.Write('.');
-                  AllDots = dotsCounter;
-                  dotsCounter++;
+                  InitializeDots(map, mapI, mapJ, dotsCounter);
                }
             }
          }
+      }
+
+      private Pacman InitializePacman(int mapI, int mapJ, ConsoleColor defaultColor)
+      {
+         Console.SetCursorPosition(mapJ, mapI);
+         Console.ForegroundColor = ConsoleColor.Yellow;
+         Console.Write('@');
+         Console.ForegroundColor = defaultColor;
+         return new Pacman(mapI, mapJ);
+      }
+
+      private Ghost InitializeGhost(int colorChooser, int mapI, int mapJ)
+      {
+         ConsoleColor ghostColor = ConsoleColor.White;
+         switch (colorChooser)
+         {
+            case 0:
+               ghostColor = ConsoleColor.Cyan;
+               break;
+            case 1:
+               ghostColor = ConsoleColor.Red;
+               break;
+            case 2:
+               ghostColor = ConsoleColor.DarkYellow;
+               break;
+            case 3:
+               ghostColor = ConsoleColor.Magenta;
+               break;
+         }
+         Console.SetCursorPosition(mapJ, mapI);
+         Console.ForegroundColor = ghostColor;
+         Console.Write('$');
+         return new Ghost(mapI, mapJ, ghostColor);
+      }
+      
+      private void InitializeDots(char[,]map, int mapI, int mapJ, int dotsCounter)
+      {
+         map[mapI, mapJ] = '.';
+         Console.SetCursorPosition(mapJ, mapI);
+         Console.Write('.');
+         AllDots = dotsCounter;
+         dotsCounter++;
       }
    }
 }
