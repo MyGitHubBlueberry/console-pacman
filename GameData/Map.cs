@@ -41,7 +41,6 @@ namespace Game
          pacman = new Pacman(0, 0);
          ghosts = new Ghost[4];
          int colorChooser = 0;
-         ConsoleColor ghostColor = ConsoleColor.White;
          ConsoleColor defaultColor = Console.ForegroundColor;
 
          for (int mapI = 0; mapI < map.GetLength(0); mapI++)
@@ -97,7 +96,7 @@ namespace Game
          Console.Write('$');
          return new Ghost(mapI, mapJ, ghostColor);
       }
-      
+
       private void InitializeDots(char[,]map, int mapI, int mapJ, int dotsCounter)
       {
          map[mapI, mapJ] = '.';
